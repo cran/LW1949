@@ -4,10 +4,12 @@
 \alias{LWnomo1}
 \title{Recreate Litchfield and Wilcoxon's Nomograph No. 1}
 \usage{
-LWnomo1(values = FALSE)
+LWnomo1(values = FALSE, ...)
 }
 \arguments{
 \item{values}{A logical scalar indicating whether values should be output.}
+
+\item{...}{Additional parameters to \code{\link{par}}.}
 }
 \value{
 If \code{values} is TRUE, a list of length four, with the x and y
@@ -39,4 +41,3 @@ Litchfield, JT Jr. and F Wilcoxon.  1949.
     Journal of Pharmacology and Experimental Therapeutics 96(2):99-113.
     \href{http://jpet.aspetjournals.org/content/96/2/99.abstract}{[link]}.
 }
-

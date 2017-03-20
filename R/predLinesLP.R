@@ -9,12 +9,12 @@
 #'   Additional arguments to \code{\link{abline}} and \code{\link{lines}}.
 #' @return
 #'   A solid fitted line is added to the plot.  Dashed lines are added to the
-#'     plot representing the \strong{horizontal} 95% confidence intervals
+#'     plot representing the \strong{horizontal} 95\% confidence intervals
 #'     for the predicted dose to elicit a given percent affected.
 #' @export
 #' @import
 #'   graphics
-#' @seealso  
+#' @seealso
 #'   \code{\link{plotDELP}}, \code{\link{plotDE}}, \code{\link{predLines}}
 #' @examples
 #' dose <- c(0.0625, 0.125, 0.25, 0.5, 1)
@@ -26,7 +26,9 @@
 #' predLinesLP(myfit)
 
 predLinesLP <- function(fit, ...) {
-  ys <- c(seq(0.1, 0.9, 0.1), 1:99, seq(99.1, 99.9, 0.1))
+  pusr <- par("usr")
+  yends <- invprobit(fit$params[1] + fit$params[2]*pusr[1:2])
+  ys <- sort(c(yends, seq(0.1, 0.9, 0.1), 1:99, seq(99.1, 99.9, 0.1)))
   lc <- predlinear(ys, fit)
   abline(fit$params, lwd=2, ...)
   lines(log10(lc[, "upper"]), probit(lc[, "pct"]/100), lty=2, ...)
